@@ -2,6 +2,7 @@ package com.example.chewie_week_school;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,7 +13,8 @@ import java.util.ArrayList;
 public class Weken extends AppCompatActivity {
     ListView listView;
     ArrayList arrayList;
-    ArrayAdapter arrayAdapter;
+    Intent get;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +36,11 @@ public class Weken extends AppCompatActivity {
         arrayList.add("week 11");
         arrayList.add("week 12");
         listView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,arrayList));
+        get = getIntent();
+        id = get.getIntExtra("id",-1);
+        System.out.println(id);
+
+        //functions declareren
+
     }
 }

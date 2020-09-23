@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -38,7 +39,8 @@ public class DatabaseVak extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + DATABASE_TABLE + " (id INTEGER primary key, datum text, semester INTEGER," +
+        db.execSQL("create table " + DATABASE_TABLE + " (id INTEGER primary key,naam text, datum " +
+                "text, semester INTEGER," +
                 "week1 text,week2 text,week3 text,week4 text,week5 text," +
                 "week6 text,week7 text,week8 text,week9 text,week10 text," +
                 "week11 text,week12 text)");
@@ -83,5 +85,24 @@ public class DatabaseVak extends SQLiteOpenHelper {
         contentValues.put(COL_15,"null");
         contentValues.put(COL_16,"null");
         sqLiteDatabase.insert(DATABASE_TABLE, null,contentValues);
+    }
+
+    public String getNaamLes(int id){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        StringBuffer stringBuffer = new StringBuffer();
+        Cursor cursor = sqLiteDatabase.rawQuery("select naam from vakken where id == " + id,null);
+        if (cursor.moveToFirst()){
+            stringBuffer.append(cursor.getString(0));
+        }
+        return stringBuffer.toString();
+    }
+    public ArrayList<String>getLessen(){
+        ArrayList<String>uit;
+        uit = new ArrayList<>();
+
+        for (int i = 0; i < IDMAKER() ; i++){
+            uit.add(getNaamLes(i));
+        }
+        return uit;
     }
 }

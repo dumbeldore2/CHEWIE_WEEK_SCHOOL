@@ -43,7 +43,7 @@ public class VoegToe extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 databaseVak.insertFoodObject(getLes(),getSemester());
-                Intent intent = new Intent(getApplicationContext(), Weken.class);
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
             }
         });
