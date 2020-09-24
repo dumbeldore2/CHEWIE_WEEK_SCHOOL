@@ -87,6 +87,22 @@ public class DatabaseVak extends SQLiteOpenHelper {
         sqLiteDatabase.insert(DATABASE_TABLE, null, contentValues);
     }
 
+    public String getLetters(int id){
+        String uit = "";
+        String naam = getNaamLes(id);
+        uit += naam.charAt(0);
+        String laatsteLetter = "";
+        laatsteLetter += ""+naam.charAt(naam.length()-1);
+        if (naam.equals("null")){
+            uit = "?";
+        }
+        if (Character.isDigit(laatsteLetter.charAt(0))){
+            uit+= laatsteLetter;
+        }
+        return uit;
+
+    }
+
     public String getNaamLes(int id) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
@@ -115,16 +131,6 @@ public class DatabaseVak extends SQLiteOpenHelper {
             stringBuffer.append(cursor.getString(0));
         }
         return Integer.parseInt(stringBuffer.toString());
-    }
-
-    public ArrayList<String> getLessen() {
-        ArrayList<String> uit;
-        uit = new ArrayList<>();
-
-        for (int i = 0; i < IDMAKER(); i++) {
-            uit.add(getNaamLes(i));
-        }
-        return uit;
     }
 
     public void updateFalse(int i, int id) {
@@ -198,6 +204,28 @@ public class DatabaseVak extends SQLiteOpenHelper {
         }
         sqLiteDatabase.update(DATABASE_TABLE, contentValues, "id = ?", new String[]{"" + id});
     }
+    public void updateVak(int id , String les, int semester) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_1, id);
+        contentValues.put(COL_2, les);
+        contentValues.put(COL_3, getDatumLes(id));
+        contentValues.put(COL_4, semester);
+        contentValues.put(COL_5, "null");
+        contentValues.put(COL_6, "null");
+        contentValues.put(COL_7, "null");
+        contentValues.put(COL_8, "null");
+        contentValues.put(COL_9, "null");
+        contentValues.put(COL_10, "null");
+        contentValues.put(COL_11, "null");
+        contentValues.put(COL_12, "null");
+        contentValues.put(COL_13, "null");
+        contentValues.put(COL_14, "null");
+        contentValues.put(COL_15, "null");
+        contentValues.put(COL_16, "null");
+        sqLiteDatabase.update(DATABASE_TABLE, contentValues, "id = ?", new String[]{"" + id});
+    }
+
     public String getWeek(int id, int i){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
@@ -205,6 +233,37 @@ public class DatabaseVak extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
-        return stringBuffer.toString();
+        return stringBuffer.toString().trim();
+    }
+
+    public boolean isErEenFalse(int id){
+        boolean uit = false;
+        for (int i = 1; i <= 12 ; i++){
+            if (getWeek(id,i).equals("false")) {
+                uit = true;
+            }
+        }
+        return uit;
+    }
+    public boolean erZijnAlDatas(){
+        Boolean uit = false;
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from vakken",null);
+        if (cursor.getCount() > 0){
+            uit = true;
+        }
+        return uit;
+    }
+
+    public void insertZesVaken(){
+        if (!erZijnAlDatas()){
+            insertFoodObject("null",1);
+            insertFoodObject("null",1);
+            insertFoodObject("null",1);
+            insertFoodObject("null",1);
+            insertFoodObject("null",1);
+            insertFoodObject("null",1);
+        }
     }
 }

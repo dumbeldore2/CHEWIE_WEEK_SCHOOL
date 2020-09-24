@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".VoegToe"
-    android:background="@drawable/colorblack">
+    android:background="@drawable/colorbackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,15 +26,27 @@
             android:hint="semester 1/2/3"
             android:textSize="40dp"
             android:layout_margin="60dp"
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal" />
         <TextView
             android:id="@+id/addDeShit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="add"
-            android:textSize="120dp"
+            android:text="change"
+            android:textSize="50dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginRight="70dp"
+            android:gravity="center"
+            android:background="@drawable/colorsystem"/>
+        <TextView
+            android:id="@+id/backVoegToe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="back"
+            android:textSize="50dp"
             android:layout_margin="70dp"
-            android:layout_gravity="center"/>
+            android:gravity="center"
+            android:background="@drawable/colorsystem"/>
 
     </LinearLayout>
 

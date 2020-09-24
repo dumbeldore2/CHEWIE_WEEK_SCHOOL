@@ -5,13 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Weken"
-    android:background="@drawable/colorblack">
+    android:background="@drawable/colorbackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="30dp"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/vak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="vak"
+            android:layout_margin="10dp"
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/week1"
             android:layout_width="match_parent"
@@ -19,7 +28,7 @@
             android:gravity="center"
             android:text="week1"
             android:layout_margin="10dp"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/week2"
             android:layout_width="match_parent"
@@ -27,7 +36,7 @@
             android:gravity="center"
             android:text="week2"
             android:layout_margin="10dp"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/week3"
             android:layout_width="match_parent"
@@ -35,7 +44,7 @@
             android:gravity="center"
             android:text="week3"
             android:layout_margin="10dp"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/week4"
             android:layout_width="match_parent"
@@ -43,7 +52,7 @@
             android:gravity="center"
             android:text="week4"
             android:layout_margin="10dp"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/week5"
             android:layout_width="match_parent"
@@ -51,7 +60,7 @@
             android:gravity="center"
             android:text="week5"
             android:layout_margin="10dp"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/week6"
             android:layout_width="match_parent"
@@ -59,7 +68,7 @@
             android:gravity="center"
             android:text="week6"
             android:layout_margin="10dp"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/week7"
             android:layout_width="match_parent"
@@ -67,7 +76,7 @@
             android:gravity="center"
             android:text="week7"
             android:layout_margin="10dp"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/week8"
             android:layout_width="match_parent"
@@ -75,7 +84,7 @@
             android:gravity="center"
             android:text="week8"
             android:layout_margin="10dp"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/week9"
             android:layout_width="match_parent"
@@ -83,7 +92,7 @@
             android:gravity="center"
             android:text="week9"
             android:layout_margin="10dp"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/week10"
             android:layout_width="match_parent"
@@ -91,7 +100,7 @@
             android:gravity="center"
             android:text="week10"
             android:layout_margin="10dp"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/week11"
             android:layout_width="match_parent"
@@ -99,7 +108,7 @@
             android:gravity="center"
             android:text="week11"
             android:layout_margin="10dp"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/week12"
             android:layout_width="match_parent"
@@ -107,7 +116,16 @@
             android:gravity="center"
             android:text="week12"
             android:layout_margin="10dp"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/weekBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="BACK"
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:background="@drawable/colorsystem"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

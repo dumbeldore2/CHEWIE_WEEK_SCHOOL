@@ -1,16 +1,11 @@
 package com.example.chewie_week_school;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,10 +29,15 @@ public class Weken extends AppCompatActivity {
     TextView week10;
     TextView week11;
     TextView week12;
+    TextView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weken);
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        );
 
         get = getIntent();
         id = get.getIntExtra("id",-1);
@@ -55,11 +55,13 @@ public class Weken extends AppCompatActivity {
         week10 = findViewById(R.id.week10);
         week11 = findViewById(R.id.week11);
         week12 = findViewById(R.id.week12);
+        back = findViewById(R.id.weekBack);
 
 
         //functions declareren
         updateTextViews();
         clickTextViewsFun();
+        backfun();
     }
 
     //functies
@@ -140,142 +142,21 @@ public class Weken extends AppCompatActivity {
         });
     }
     public void updateTextViews(){
-        if (databaseVak.getWeek(id,1).equals("null")){
-            week1.setText("week 1 nog niet af");
-            week1.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,1).equals("false")){
-            week1.setText("week 1 nog niet af");
-            week1.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,1).equals("True")){
-            week1.setText("week 1 is FINISHED");
-            week1.setBackgroundResource(R.drawable.colorgreen);
-        }
-
-        if (databaseVak.getWeek(id,2).equals("null")){
-            week2.setText("week 2 nog niet af");
-            week2.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,2).equals("false")){
-            week2.setText("week 2 nog niet af");
-            week2.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,2).equals("True")){
-            week2.setText("week 2 is FINISHED");
-            week2.setBackgroundResource(R.drawable.colorgreen);
-        }
-
-        if (databaseVak.getWeek(id,3).equals("null")){
-            week3.setText("week 3 nog niet af");
-            week3.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,3).equals("false")){
-            week3.setText("week 3 nog niet af");
-            week3.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,3).equals("True")){
-            week3.setText("week 3 is FINISHED");
-            week3.setBackgroundResource(R.drawable.colorgreen);
-        }
-
-        if (databaseVak.getWeek(id,4).equals("null")){
-            week4.setText("week 4 nog niet af");
-            week4.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,4).equals("false")){
-            week4.setText("week 4 nog niet af");
-            week4.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,4).equals("True")){
-            week4.setText("week 4 is FINISHED");
-            week4.setBackgroundResource(R.drawable.colorgreen);
-        }
-
-        if (databaseVak.getWeek(id,5).equals("null")){
-            week5.setText("week 5 nog niet af");
-            week5.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,5).equals("false")){
-            week5.setText("week 5 nog niet af");
-            week5.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,5).equals("True")){
-            week5.setText("week 5 is FINISHED");
-            week5.setBackgroundResource(R.drawable.colorgreen);
-        }
-
-
-        if (databaseVak.getWeek(id,6).equals("null")){
-            week6.setText("week 6 nog niet af");
-            week6.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,6).equals("false")){
-            week6.setText("week 6 nog niet af");
-            week6.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,6).equals("True")){
-            week6.setText("week 6 is FINISHED");
-            week6.setBackgroundResource(R.drawable.colorgreen);
-        }
-
-        if (databaseVak.getWeek(id,7).equals("null")){
-            week7.setText("week 7 nog niet af");
-            week7.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,7).equals("false")){
-            week7.setText("week 7 nog niet af");
-            week7.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,7).equals("True")){
-            week7.setText("week 7 is FINISHED");
-            week7.setBackgroundResource(R.drawable.colorgreen);
-        }
-
-        if (databaseVak.getWeek(id,8).equals("null")){
-            week8.setText("week 8 nog niet af");
-            week8.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,8).equals("false")){
-            week8.setText("week 8 nog niet af");
-            week8.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,8).equals("True")){
-            week8.setText("week 8 is FINISHED");
-            week8.setBackgroundResource(R.drawable.colorgreen);
-        }
-
-        if (databaseVak.getWeek(id,9).equals("null")){
-            week9.setText("week 9 nog niet af");
-            week9.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,9).equals("false")){
-            week9.setText("week 9 nog niet af");
-            week9.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,9).equals("True")){
-            week9.setText("week 9 is FINISHED");
-            week9.setBackgroundResource(R.drawable.colorgreen);
-        }
-
-        if (databaseVak.getWeek(id,10).equals("null")){
-            week10.setText("week 10 nog niet af");
-            week10.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,10).equals("false")){
-            week10.setText("week 10 nog niet af");
-            week10.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,10).equals("True")){
-            week10.setText("week 10 is FINISHED");
-            week10.setBackgroundResource(R.drawable.colorgreen);
-        }
-
-        if (databaseVak.getWeek(id,11).equals("null")){
-            week11.setText("week 11 nog niet af");
-            week11.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,11).equals("false")){
-            week11.setText("week 11 nog niet af");
-            week11.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,11).equals("True")){
-            week11.setText("week 11 is FINISHED");
-            week11.setBackgroundResource(R.drawable.colorgreen);
-        }
-
-        if (databaseVak.getWeek(id,12).equals("null")){
-            week12.setText("week 12 nog niet af");
-            week12.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,12).equals("false")){
-            week12.setText("week 12 nog niet af");
-            week12.setBackgroundResource(R.drawable.colorred);
-        } else if (databaseVak.getWeek(id,12).equals("True")){
-            week12.setText("week 12 is FINISHED");
-            week12.setBackgroundResource(R.drawable.colorgreen);
-
-        }
+        updateInnerFun(1,week1);
+        updateInnerFun(2,week2);
+        updateInnerFun(3,week3);
+        updateInnerFun(4,week4);
+        updateInnerFun(5,week5);
+        updateInnerFun(6,week6);
+        updateInnerFun(7,week7);
+        updateInnerFun(8,week8);
+        updateInnerFun(9,week9);
+        updateInnerFun(10,week10);
+        updateInnerFun(11,week11);
+        updateInnerFun(12,week12);
     }
-
     public void clickInnerFun(int i){
+        System.out.println(databaseVak.getWeek(id,i));
         if (databaseVak.getWeek(id,i).equals("null")){
             databaseVak.updateFalse(i,id);
             updateTextViews();
@@ -287,8 +168,25 @@ public class Weken extends AppCompatActivity {
             updateTextViews();
         }
     }
-
-    public void updateInnerFun(int i){
-
+    public void updateInnerFun(int i, TextView week){
+        if (databaseVak.getWeek(id,i).equals("null")){
+            week.setText("week "+i+" nog niet af");
+            week.setBackgroundResource(R.drawable.colorgreybuttonsweek);
+        } else if (databaseVak.getWeek(id,i).equals("false")){
+            week.setText("week "+i+" nog niet af");
+            week.setBackgroundResource(R.drawable.colorredbuttonsweek);
+        } else if (databaseVak.getWeek(id,i).equals("True")){
+            week.setText("week "+i+" is FINISHED");
+            week.setBackgroundResource(R.drawable.colorgreenbuttonsweek);
+        }
+    }
+    public void backfun(){
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
