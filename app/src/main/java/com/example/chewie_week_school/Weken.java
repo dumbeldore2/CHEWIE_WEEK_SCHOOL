@@ -67,183 +67,75 @@ public class Weken extends AppCompatActivity {
         week1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (databaseVak.getWeek(id,1).equals("null")){
-                    databaseVak.updateFalse(1,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,1).equals("True")){
-                    databaseVak.updateFalse(1,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,1).equals("false")){
-                    databaseVak.updateTrue(1,id);
-                    updateTextViews();
-                }
+                clickInnerFun(1);
             }
         });
         week2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (databaseVak.getWeek(id,2).equals("null")){
-                    databaseVak.updateFalse(2,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,2).equals("True")){
-                    databaseVak.updateFalse(2,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,2).equals("false")){
-                    databaseVak.updateTrue(2,id);
-                    updateTextViews();
-                }
+                clickInnerFun(2);
             }
         });
         week3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (databaseVak.getWeek(id,3).equals("null")){
-                    databaseVak.updateFalse(3,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,3).equals("True")){
-                    databaseVak.updateFalse(3,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,3).equals("false")){
-                    databaseVak.updateTrue(3,id);
-                    updateTextViews();
-                }
+                clickInnerFun(3);
             }
         });
         week4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (databaseVak.getWeek(id,4).equals("null")){
-                    databaseVak.updateFalse(4,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,4).equals("True")){
-                    databaseVak.updateFalse(4,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,4).equals("false")){
-                    databaseVak.updateTrue(4,id);
-                    updateTextViews();
-                }
+                clickInnerFun(4);
             }
         });
         week5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (databaseVak.getWeek(id,5).equals("null")){
-                    databaseVak.updateFalse(5,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,5).equals("True")){
-                    databaseVak.updateFalse(5,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,5).equals("false")){
-                    databaseVak.updateTrue(5,id);
-                    updateTextViews();
-                }
+                clickInnerFun(5);
             }
         });
         week6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (databaseVak.getWeek(id,6).equals("null")){
-                    databaseVak.updateFalse(6,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,6).equals("True")){
-                    databaseVak.updateFalse(6,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,6).equals("false")){
-                    databaseVak.updateTrue(6,id);
-                    updateTextViews();
-                }
+                clickInnerFun(6);
             }
         });
 
         week7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (databaseVak.getWeek(id,7).equals("null")){
-                    databaseVak.updateFalse(7,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,7).equals("True")){
-                    databaseVak.updateFalse(7,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,7).equals("false")){
-                    databaseVak.updateTrue(7,id);
-                    updateTextViews();
-                }
+                clickInnerFun(7);
             }
         });
         week8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (databaseVak.getWeek(id,8).equals("null")){
-                    databaseVak.updateFalse(8,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,8).equals("True")){
-                    databaseVak.updateFalse(8,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,8).equals("false")){
-                    databaseVak.updateTrue(8,id);
-                    updateTextViews();
-                }
+                clickInnerFun(8);
             }
         });
 
         week9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (databaseVak.getWeek(id,9).equals("null")){
-                    databaseVak.updateFalse(9,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,9).equals("True")){
-                    databaseVak.updateFalse(9,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,9).equals("false")){
-                    databaseVak.updateTrue(9,id);
-                    updateTextViews();
-                }
+                clickInnerFun(9);
             }
         });
         week10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (databaseVak.getWeek(id,10).equals("null")){
-                    databaseVak.updateFalse(10,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,10).equals("True")){
-                    databaseVak.updateFalse(10,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,10).equals("false")){
-                    databaseVak.updateTrue(10,id);
-                    updateTextViews();
-                }
+                clickInnerFun(10);
             }
         });
         week11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (databaseVak.getWeek(id,11).equals("null")){
-                    databaseVak.updateFalse(11,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,11).equals("True")){
-                    databaseVak.updateFalse(11,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,11).equals("false")){
-                    databaseVak.updateTrue(11,id);
-                    updateTextViews();
-                }
+                clickInnerFun(11);
             }
         });
         week12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (databaseVak.getWeek(id,12).equals("null")){
-                    databaseVak.updateFalse(12,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,12).equals("True")){
-                    databaseVak.updateFalse(12,id);
-                    updateTextViews();
-                } else if (databaseVak.getWeek(id,12).equals("false")){
-                    databaseVak.updateTrue(12,id);
-                    updateTextViews();
-                }
+                clickInnerFun(12);
             }
         });
     }
@@ -381,9 +273,22 @@ public class Weken extends AppCompatActivity {
             week12.setBackgroundResource(R.drawable.colorgreen);
 
         }
+    }
 
+    public void clickInnerFun(int i){
+        if (databaseVak.getWeek(id,i).equals("null")){
+            databaseVak.updateFalse(i,id);
+            updateTextViews();
+        } else if (databaseVak.getWeek(id,i).equals("True")){
+            databaseVak.updateFalse(i,id);
+            updateTextViews();
+        } else if (databaseVak.getWeek(id,i).equals("false")){
+            databaseVak.updateTrue(i,id);
+            updateTextViews();
+        }
+    }
 
-
+    public void updateInnerFun(int i){
 
     }
 }
