@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".ObjectenAdd"></activity>
+        <activity android:name=".ObjectenLijst" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".VoegToe" />
         <activity android:name=".Weken" />
         <activity android:name=".LoadingScreen">
