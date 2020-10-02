@@ -4,12 +4,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".ObjectenAdd"></activity>
+        <activity android:name=".ObjectenLijst" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".VoegToe" />
         <activity android:name=".Weken" />
         <activity android:name=".LoadingScreen">

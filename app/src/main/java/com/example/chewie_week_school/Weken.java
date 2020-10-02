@@ -6,14 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class Weken extends AppCompatActivity {
-    ListView listView;
-    ArrayList arrayList;
     Intent get;
     int id;
     DatabaseVak databaseVak;
@@ -30,6 +30,8 @@ public class Weken extends AppCompatActivity {
     TextView week11;
     TextView week12;
     TextView back;
+    DatabaseObjecten databaseObjecten;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +58,7 @@ public class Weken extends AppCompatActivity {
         week11 = findViewById(R.id.week11);
         week12 = findViewById(R.id.week12);
         back = findViewById(R.id.weekBack);
-
+        databaseObjecten = new DatabaseObjecten(this);
 
         //functions declareren
         updateTextViews();
@@ -69,75 +71,73 @@ public class Weken extends AppCompatActivity {
         week1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickInnerFun(1);
+                clickInnerFun(1, week1);
             }
         });
         week2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickInnerFun(2);
+                clickInnerFun(2, week2);
             }
         });
         week3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickInnerFun(3);
+                clickInnerFun(3, week3);
             }
         });
         week4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickInnerFun(4);
+                clickInnerFun(4, week4);
             }
         });
         week5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickInnerFun(5);
+                clickInnerFun(5, week5);
             }
         });
         week6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickInnerFun(6);
+                clickInnerFun(6, week6);
             }
         });
-
         week7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickInnerFun(7);
+                clickInnerFun(7, week7);
             }
         });
         week8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickInnerFun(8);
+                clickInnerFun(8, week8);
             }
         });
-
         week9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickInnerFun(9);
+                clickInnerFun(9, week9);
             }
         });
         week10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickInnerFun(10);
+                clickInnerFun(10, week10);
             }
         });
         week11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickInnerFun(11);
+                clickInnerFun(11, week11);
             }
         });
         week12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickInnerFun(12);
+                clickInnerFun(12, week12);
             }
         });
     }
@@ -155,18 +155,18 @@ public class Weken extends AppCompatActivity {
         updateInnerFun(11,week11);
         updateInnerFun(12,week12);
     }
-    public void clickInnerFun(int i){
-        System.out.println(databaseVak.getWeek(id,i));
-        if (databaseVak.getWeek(id,i).equals("null")){
-            databaseVak.updateFalse(i,id);
-            updateTextViews();
-        } else if (databaseVak.getWeek(id,i).equals("True")){
-            databaseVak.updateFalse(i,id);
-            updateTextViews();
-        } else if (databaseVak.getWeek(id,i).equals("false")){
-            databaseVak.updateTrue(i,id);
-            updateTextViews();
-        }
+    public void clickInnerFun(final int i, TextView textView){
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ObjectenLijst.class);
+                intent.putExtra("week",i);
+                intent.putExtra("id",id);
+                System.out.println(id);
+                System.out.println(i);
+                startActivity(intent);
+            }
+        });
     }
     public void updateInnerFun(int i, TextView week){
         if (databaseVak.getWeek(id,i).equals("null")){
