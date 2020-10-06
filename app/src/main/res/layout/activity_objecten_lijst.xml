@@ -15,9 +15,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <Button
+            android:id="@+id/backToListview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="back"/>
+        <Button
             android:id="@+id/addToListview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="add"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

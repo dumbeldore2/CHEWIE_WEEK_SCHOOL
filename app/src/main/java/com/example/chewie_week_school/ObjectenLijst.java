@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class ObjectenLijst extends AppCompatActivity {
 
@@ -16,6 +19,8 @@ public class ObjectenLijst extends AppCompatActivity {
     Intent get;
     int id = 0;
     int week = 0;
+    ArrayList<String>lijst;
+    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +33,12 @@ public class ObjectenLijst extends AppCompatActivity {
         get = getIntent();
         id = get.getIntExtra("id", -1);
         week = get.getIntExtra("week", -1);
-        System.out.println(id);
-        System.out.println(week);
+        lijst = new ArrayList<>();
+        back = findViewById(R.id.backToListview);
         buttonFun();
+        lijstUpdaten();
+        backButton();
+
     }
 
     public void buttonFun(){
@@ -38,6 +46,33 @@ public class ObjectenLijst extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),ObjectenAdd.class);
+                intent.putExtra("id",id);
+                intent.putExtra("week",week);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void lijstUpdaten(){
+        lijst = databaseObjecten.berichten(id,week);
+        if (lijst.size() == 0){
+            lijst.add("er is nog geen informatie");
+            ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, lijst);
+            listView.setAdapter(arrayAdapter);
+        } else {
+            if (lijst.size()>0){
+                ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, lijst);
+                listView.setAdapter(arrayAdapter);
+            }
+        }
+    }
+
+    public void backButton(){
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),Weken.class);
+                intent.putExtra("id",id);
                 startActivity(intent);
             }
         });

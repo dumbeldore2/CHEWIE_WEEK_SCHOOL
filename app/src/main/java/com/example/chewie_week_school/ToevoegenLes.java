@@ -9,7 +9,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class VoegToe extends AppCompatActivity {
+public class ToevoegenLes extends AppCompatActivity {
     //variabelen
     EditText les;
     EditText semester;

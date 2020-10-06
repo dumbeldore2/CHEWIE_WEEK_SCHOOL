@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -20,14 +21,13 @@ public class DatabaseObjecten extends SQLiteOpenHelper {
     public static final String COL_3 = "lesid";
     public static final String COL_4 = "bericht";
     public static final String COL_5 = "week";
-    public static final String COL_6 = "percent";
 
     public DatabaseObjecten(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + DATABASE_TABLE + " (id INTEGER primary key,datum text, les INTEGER , bericht text,week text, percent INTEGER)");
+        db.execSQL("create table " + DATABASE_TABLE + " (id INTEGER primary key,datum text,lesid INTEGER, bericht text,week INTEGER)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
@@ -37,12 +37,12 @@ public class DatabaseObjecten extends SQLiteOpenHelper {
     public int IDMAKER() {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from objecten", null
+                "select * from object", null
         );
         return cursor.getCount();
     }
 
-    public void insertObject(int lesid, String bericht ){
+    public void insertObject(int lesid, String bericht,int weekid){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -53,16 +53,34 @@ public class DatabaseObjecten extends SQLiteOpenHelper {
         contentValues.put(COL_2, deDatum);
         contentValues.put(COL_3, lesid);
         contentValues.put(COL_4, bericht);
-        contentValues.put(COL_5,0);
+        contentValues.put(COL_5,weekid);
         sqLiteDatabase.insert(DATABASE_TABLE, null, contentValues);
     }
 
-    public Boolean erIsDataVanDieWeekEnDieLes(int id,int iweek) {
-        boolean uit = false;
-        Cursor cursor = getWritableDatabase().rawQuery("select * from objecten where lesid == " + id + " and week == " + iweek, null);
-        if (cursor.getCount() > 0) {
-            uit = true;
-        }
+    public Integer geefAantalDataVanDieWeek(int id,int iweek) {
+        int uit = -1;
+        Cursor cursor = getWritableDatabase().rawQuery("select * from object where lesid == " + id + " and week == " + iweek, null);
+        uit = cursor.getCount();
         return uit;
     }
+
+    public String bericht(int lesid,int weekid,int pos){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        StringBuffer stringBuffer = new StringBuffer();
+        Cursor cursor = sqLiteDatabase.rawQuery("select bericht from object where lesid == " + lesid + " and week == "+ weekid, null);
+        if (cursor.moveToPosition(pos)){
+        stringBuffer.append(cursor.getString(0));
+        }
+        return stringBuffer.toString().trim();
+    }
+
+    public ArrayList<String> berichten(int id , int week){
+        ArrayList arrayList;
+        arrayList = new ArrayList();
+        for (int i = 0 ; i < geefAantalDataVanDieWeek(id,week);i++){
+            arrayList.add(bericht(id,week,i));
+        }
+        return arrayList;
+    }
+
 }

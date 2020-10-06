@@ -30,8 +30,6 @@ public class ObjectenAdd extends AppCompatActivity {
         get = getIntent();
         id = get.getIntExtra("id",-1);
         week = get.getIntExtra("week",-1);
-        System.out.println(id);
-        System.out.println(week);
 
         backFun();
         addFun();
@@ -39,8 +37,9 @@ public class ObjectenAdd extends AppCompatActivity {
 
     public String getEditText(){
         String uit = "";
-        if (editText.getText().toString().trim().isEmpty() || editText.getText().toString() == null)throw new IllegalArgumentException("der zit kak aan de knikker");
-        uit = editText.getText().toString();
+        if (editText.getText().toString().trim() != null){
+            uit = editText.getText().toString();
+        }
         return  uit;
     }
 
@@ -58,9 +57,13 @@ public class ObjectenAdd extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),ObjectenLijst.class);
-                databaseObjecten.insertObject(id,getEditText());
-                startActivity(intent);
+                if (getEditText() != null && !getEditText().isEmpty()){
+                    Intent intent = new Intent(getApplicationContext(),ObjectenLijst.class);
+                    databaseObjecten.insertObject(id,getEditText(),week);
+                    intent.putExtra("id",id);
+                    intent.putExtra("week",week);
+                    startActivity(intent);
+                }
             }
         });
     }

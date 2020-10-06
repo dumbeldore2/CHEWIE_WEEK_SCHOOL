@@ -162,21 +162,19 @@ public class Weken extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),ObjectenLijst.class);
                 intent.putExtra("week",i);
                 intent.putExtra("id",id);
-                System.out.println(id);
-                System.out.println(i);
                 startActivity(intent);
             }
         });
     }
     public void updateInnerFun(int i, TextView week){
         if (databaseVak.getWeek(id,i).equals("null")){
-            week.setText("week "+i+" nog niet af");
+            week.setText("week "+i+"");
             week.setBackgroundResource(R.drawable.colorgreybuttonsweek);
         } else if (databaseVak.getWeek(id,i).equals("false")){
-            week.setText("week "+i+" nog niet af");
+            week.setText("week "+i+" == 0%");
             week.setBackgroundResource(R.drawable.colorredbuttonsweek);
         } else if (databaseVak.getWeek(id,i).equals("True")){
-            week.setText("week "+i+" is FINISHED");
+            week.setText("week "+i+" == 100%");
             week.setBackgroundResource(R.drawable.colorgreenbuttonsweek);
         }
     }
