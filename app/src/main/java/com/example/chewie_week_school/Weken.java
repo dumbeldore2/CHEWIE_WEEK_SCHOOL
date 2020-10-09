@@ -64,6 +64,8 @@ public class Weken extends AppCompatActivity {
         updateTextViews();
         clickTextViewsFun();
         backfun();
+        System.out.println(databaseObjecten.erIsAlInfo(id,1));
+        System.out.println(databaseObjecten.getPercent(id,1,1));
     }
 
     //functies
@@ -142,18 +144,18 @@ public class Weken extends AppCompatActivity {
         });
     }
     public void updateTextViews(){
-        updateInnerFun(1,week1);
-        updateInnerFun(2,week2);
-        updateInnerFun(3,week3);
-        updateInnerFun(4,week4);
-        updateInnerFun(5,week5);
-        updateInnerFun(6,week6);
-        updateInnerFun(7,week7);
-        updateInnerFun(8,week8);
-        updateInnerFun(9,week9);
-        updateInnerFun(10,week10);
-        updateInnerFun(11,week11);
-        updateInnerFun(12,week12);
+        updateInnerFun(1,week1,1);
+        updateInnerFun(2,week2,2);
+        updateInnerFun(3,week3,3);
+        updateInnerFun(4,week4,4);
+        updateInnerFun(5,week5,5);
+        updateInnerFun(6,week6,6);
+        updateInnerFun(7,week7,7);
+        updateInnerFun(8,week8,8);
+        updateInnerFun(9,week9,9);
+        updateInnerFun(10,week10,10);
+        updateInnerFun(11,week11,11);
+        updateInnerFun(12,week12,12);
     }
     public void clickInnerFun(final int i, TextView textView){
         textView.setOnClickListener(new View.OnClickListener() {
@@ -166,12 +168,12 @@ public class Weken extends AppCompatActivity {
             }
         });
     }
-    public void updateInnerFun(int i, TextView week){
+    public void updateInnerFun(int i, TextView week,int weekid){
         if (databaseVak.getWeek(id,i).equals("null")){
             week.setText("week "+i+"");
             week.setBackgroundResource(R.drawable.colorgreybuttonsweek);
         } else if (databaseVak.getWeek(id,i).equals("false")){
-            week.setText("week "+i+" == 0%");
+            week.setText("week "+i+" == %");
             week.setBackgroundResource(R.drawable.colorredbuttonsweek);
         } else if (databaseVak.getWeek(id,i).equals("True")){
             week.setText("week "+i+" == 100%");
