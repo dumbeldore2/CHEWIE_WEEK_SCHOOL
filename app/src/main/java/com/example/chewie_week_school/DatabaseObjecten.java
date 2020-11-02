@@ -44,6 +44,7 @@ public class DatabaseObjecten extends SQLiteOpenHelper {
     }
 
     public void insertObject(int lesid, String bericht,int weekid){
+        System.out.println(weekid+"cum");
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -54,8 +55,8 @@ public class DatabaseObjecten extends SQLiteOpenHelper {
         contentValues.put(COL_2, deDatum);
         contentValues.put(COL_3, lesid);
         contentValues.put(COL_4, bericht);
-        contentValues.put(COL_5,weekid);
-        contentValues.put(COL_5,0);
+        contentValues.put(COL_5, weekid);
+        contentValues.put(COL_6,0);
         sqLiteDatabase.insert(DATABASE_TABLE, null, contentValues);
     }
 
@@ -85,7 +86,7 @@ public class DatabaseObjecten extends SQLiteOpenHelper {
         }
         return stringBuffer.toString().trim();
     }
-    public String  getPercent(int lesid,int weekid,int pos){
+    public String getPercent(int lesid,int weekid,int pos){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         if (erIsAlInfo(lesid,weekid)){

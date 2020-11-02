@@ -33,6 +33,9 @@ public class DatabaseVak extends SQLiteOpenHelper {
     public static final String COL_15 = "week11";
     public static final String COL_16 = "week12";
 
+
+
+
     public DatabaseVak(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
     }

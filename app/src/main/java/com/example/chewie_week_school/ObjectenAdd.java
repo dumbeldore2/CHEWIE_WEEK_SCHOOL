@@ -30,6 +30,7 @@ public class ObjectenAdd extends AppCompatActivity {
         get = getIntent();
         id = get.getIntExtra("id",-1);
         week = get.getIntExtra("week",-1);
+        System.out.println(week);
 
         backFun();
         addFun();

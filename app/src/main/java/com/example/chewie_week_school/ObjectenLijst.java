@@ -55,6 +55,7 @@ public class ObjectenLijst extends AppCompatActivity {
 
     public void lijstUpdaten(){
         lijst = databaseObjecten.berichten(id,week);
+        System.out.println(lijst.size());
         if (lijst.size() == 0){
             lijst.add("er is nog geen informatie");
             ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, lijst);
