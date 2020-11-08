@@ -4,26 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ObjectenLijst">
-
+    tools:context=".ObjectenLijst"
+    android:background="@drawable/colorbackground">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="30dp">
         <ListView
             android:id="@+id/listviewObjecten"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <Button
-            android:id="@+id/backToListview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="back"/>
+            android:layout_height="0dip"
+            android:layout_weight="1"/>
         <Button
             android:id="@+id/addToListview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="add"/>
-    </LinearLayout>
+            android:text="add"
+            android:background="@drawable/colorsystem"
+            android:layout_marginBottom="10dp"/>
+        <Button
+            android:id="@+id/backToListview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="back"
+            android:background="@drawable/colorsystem"
+            android:layout_marginBottom="10dp"/>
 
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

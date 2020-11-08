@@ -4,26 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ObjectenAdd">
-    <EditText
-        android:id="@+id/editTextToevoegenObject"
+    tools:context=".ObjectenAdd"
+    android:background="@drawable/colorbackground">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <Button
-        android:id="@+id/backToevoegenObject"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/addToevoegenObject"/>
-    <Button
-        android:id="@+id/addToevoegenObject"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ADD"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="30dp">
+        <EditText
+            android:id="@+id/editTextToevoegenObject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:hint="add here."
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="40dp"/>
+        <Button
+            android:id="@+id/backToevoegenObject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/addToevoegenObject"
+            android:background="@drawable/colorsystem"
+            android:layout_marginBottom="10dp"/>
+        <Button
+            android:id="@+id/addToevoegenObject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/colorsystem"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
