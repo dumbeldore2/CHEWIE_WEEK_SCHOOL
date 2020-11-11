@@ -14,6 +14,7 @@ public class ObjectenAdd extends AppCompatActivity {
     Button back;
     Button add;
     DatabaseObjecten databaseObjecten;
+    DatabaseVak databaseVak;
     Intent get;
     int id = 0;
     int week = 0;
@@ -32,6 +33,7 @@ public class ObjectenAdd extends AppCompatActivity {
         back = findViewById(R.id.backToevoegenObject);
         add = findViewById(R.id.addToevoegenObject);
         databaseObjecten = new DatabaseObjecten(this);
+        databaseVak = new DatabaseVak(this);
         get = getIntent();
         id = get.getIntExtra("id",-1);
         week = get.getIntExtra("week",-1);
@@ -68,6 +70,7 @@ public class ObjectenAdd extends AppCompatActivity {
                     databaseObjecten.insertObject(id,getEditText(),week);
                     intent.putExtra("id",id);
                     intent.putExtra("week",week);
+                    databaseVak.updateFalse(week,id);
                     startActivity(intent);
                 }
             }
