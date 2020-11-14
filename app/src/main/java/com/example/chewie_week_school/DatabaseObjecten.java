@@ -77,6 +77,17 @@ public class DatabaseObjecten extends SQLiteOpenHelper {
         }
     }
 
+    public String getTextOnly(int id) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        StringBuffer stringBuffer = new StringBuffer();
+        Cursor cursor = sqLiteDatabase.rawQuery("select bericht from object where id == "+ id,
+                null);
+        if (cursor.moveToPosition(0)) {
+            stringBuffer.append(cursor.getString(0));
+        }
+        return stringBuffer.toString().trim() ;
+    }
+
     public String bericht(int lesid,int weekid,int pos){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
@@ -84,7 +95,7 @@ public class DatabaseObjecten extends SQLiteOpenHelper {
         if (cursor.moveToPosition(pos)){
         stringBuffer.append(cursor.getString(0));
         }
-        return stringBuffer.toString().trim();
+        return stringBuffer.toString().trim() + ":: "+ getPercent(lesid,weekid,pos) + "%";
     }
     public String getPercent(int lesid,int weekid,int pos){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
@@ -93,6 +104,20 @@ public class DatabaseObjecten extends SQLiteOpenHelper {
             Cursor cursor = sqLiteDatabase.rawQuery("select percent from object where lesid == " + lesid + " and week == "+ weekid, null);
             if (cursor.moveToPosition(pos)){
                 stringBuffer.append(cursor.getString(0));
+            }
+        }
+        return stringBuffer.toString().trim();
+    }
+    public String getPercentID(int lesid,int weekid,int pos){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        StringBuffer stringBuffer = new StringBuffer();
+        if (erIsAlInfo(lesid,weekid)){
+            Cursor cursor =
+                    sqLiteDatabase.rawQuery("select id from object where lesid == " + lesid + " " +
+                            "and week == "+ weekid, null);
+            if (cursor.moveToPosition(pos)){
+                stringBuffer.append(cursor.getString(0));
+                System.out.println(stringBuffer.toString()+"8:::::::::::::::::>");
             }
         }
         return stringBuffer.toString().trim();
@@ -107,4 +132,78 @@ public class DatabaseObjecten extends SQLiteOpenHelper {
         return arrayList;
     }
 
+    public void updateTo50(int idObject , int lesid , int weekid){
+        Date calendar = Calendar.getInstance().getTime();
+        String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL_1, idObject);
+        contentValues.put(COL_2, deDatum);
+        contentValues.put(COL_3, lesid);
+        contentValues.put(COL_4, getTextOnly(idObject));
+        contentValues.put(COL_5, weekid);
+        contentValues.put(COL_6, 50);
+        sqLiteDatabase.update(DATABASE_TABLE, contentValues, "id = ?", new String[]{""+idObject});
+    }
+    public void updateTo100(int idObject , int lesid , int weekid){
+        Date calendar = Calendar.getInstance().getTime();
+        String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL_1, idObject);
+        contentValues.put(COL_2, deDatum);
+        contentValues.put(COL_3, lesid);
+        contentValues.put(COL_4, getTextOnly(idObject));
+        contentValues.put(COL_5, weekid);
+        contentValues.put(COL_6, 100);
+        sqLiteDatabase.update(DATABASE_TABLE, contentValues, "id = ?", new String[]{""+idObject});
+    }
+    public void updateTo0(int idObject , int lesid , int weekid){
+        Date calendar = Calendar.getInstance().getTime();
+        String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL_1, idObject);
+        contentValues.put(COL_2, deDatum);
+        contentValues.put(COL_3, lesid);
+        contentValues.put(COL_4, getTextOnly(idObject));
+        contentValues.put(COL_5, weekid);
+        contentValues.put(COL_6, 0);
+        sqLiteDatabase.update(DATABASE_TABLE, contentValues, "id = ?", new String[]{""+idObject});
+    }
+
+    public String getTotalPercentage(int lesid,int weekid){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        StringBuffer stringBuffer = new StringBuffer();
+        if (erIsAlInfo(lesid,weekid)){
+            Cursor cursor =
+                    sqLiteDatabase.rawQuery("select sum(percent) from object where lesid == " + lesid + " and week == "+ weekid, null);
+            if (cursor.moveToFirst()){
+                stringBuffer.append(cursor.getString(0));
+            }
+        }
+        return stringBuffer.toString().trim();
+    }
+
+    public int getGrote(int lesid,int weekid){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        StringBuffer stringBuffer = new StringBuffer();
+        int a = 0;
+        if (erIsAlInfo(lesid,weekid)){
+            Cursor cursor =
+                    sqLiteDatabase.rawQuery("select * from object where lesid == " + lesid + " " +
+                            "and week == "+ weekid, null);
+            a = cursor.getCount();
+        }
+        if (a == 0){
+            a = 1;
+        }
+        return a;
+    }
 }

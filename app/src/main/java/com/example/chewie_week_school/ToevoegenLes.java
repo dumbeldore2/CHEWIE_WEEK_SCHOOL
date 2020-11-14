@@ -35,7 +35,7 @@ public class ToevoegenLes extends AppCompatActivity {
         back = findViewById(R.id.backVoegToe);
         databaseVak = new DatabaseVak(this);
         get = getIntent();
-        id = get.getIntExtra("id",-1) - 1;
+        id = get.getIntExtra("id",-1);
 
 
 

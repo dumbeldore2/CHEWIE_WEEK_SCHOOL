@@ -11,6 +11,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="30dp">
+        <TextView
+            android:id="@+id/vakObjectLijst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="vak"
+            android:layout_margin="30dp"
+            android:textSize="35dp"/>
+        <TextView
+            android:id="@+id/weekObjectLijst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="week"
+            android:layout_margin="30dp"
+            android:textSize="35dp"/>
         <ListView
             android:id="@+id/listviewObjecten"
             android:layout_width="match_parent"

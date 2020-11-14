@@ -6,15 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class ObjectenLijst extends AppCompatActivity {
 
     DatabaseObjecten databaseObjecten;
+    DatabaseVak databaseVak;
     ListView listView;
     Button addToListview;
     Intent get;
@@ -22,6 +25,8 @@ public class ObjectenLijst extends AppCompatActivity {
     int week = 0;
     ArrayList<String>lijst;
     Button back;
+    TextView vakTextview;
+    TextView weekTextview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,7 @@ public class ObjectenLijst extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         databaseObjecten = new DatabaseObjecten(this);
+        databaseVak = new DatabaseVak(this);
         listView = findViewById(R.id.listviewObjecten);
         addToListview = findViewById(R.id.addToListview);
         get = getIntent();
@@ -39,9 +45,15 @@ public class ObjectenLijst extends AppCompatActivity {
         week = get.getIntExtra("week", -1);
         lijst = new ArrayList<>();
         back = findViewById(R.id.backToListview);
+        vakTextview = findViewById(R.id.vakObjectLijst);
+        weekTextview = findViewById(R.id.weekObjectLijst);
+
+        //function
         buttonFun();
         lijstUpdaten();
         backButton();
+        veranderPercentage();
+        weekTextviewfun();
 
     }
 
@@ -81,5 +93,36 @@ public class ObjectenLijst extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+
+    public void veranderPercentage(){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                if (Integer.parseInt(databaseObjecten.getPercent(id, week, pos)) == 0) {
+                    databaseObjecten.updateTo50(Integer.parseInt(databaseObjecten.getPercentID(id, week, pos)), id, week);
+                    lijstUpdaten();
+                }   else {
+                        if (Integer.parseInt(databaseObjecten.getPercent(id, week, pos)) == 50) {
+                            databaseObjecten.updateTo100(Integer.parseInt(databaseObjecten.getPercentID(id, week, pos)), id, week);
+                            lijstUpdaten();
+                        }       else {
+                                    if (Integer.parseInt(databaseObjecten.getPercent(id, week, pos)) == 100) {
+                                        databaseObjecten.updateTo0(Integer.parseInt(databaseObjecten.getPercentID(id, week, pos)), id, week);
+                                        lijstUpdaten();
+                                    }
+                                }
+                    }
+            }
+        });
+    }
+
+    public void weekTextviewfun(){
+        String vak = databaseVak.getNaamLes(id);
+        String weektext = " week " + week;
+
+        vakTextview.setText(vak);
+        weekTextview.setText(weektext);
     }
 }

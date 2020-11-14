@@ -30,6 +30,7 @@ public class Weken extends AppCompatActivity {
     TextView week11;
     TextView week12;
     TextView back;
+    TextView vakTextview;
     DatabaseObjecten databaseObjecten;
 
     @Override
@@ -58,14 +59,14 @@ public class Weken extends AppCompatActivity {
         week11 = findViewById(R.id.week11);
         week12 = findViewById(R.id.week12);
         back = findViewById(R.id.weekBack);
+        vakTextview = findViewById(R.id.vakweken);
         databaseObjecten = new DatabaseObjecten(this);
 
         //functions declareren
         updateTextViews();
         clickTextViewsFun();
         backfun();
-        System.out.println(databaseObjecten.erIsAlInfo(id,1));
-        System.out.println(databaseObjecten.getPercent(id,1,1));
+        updateTextVak();
     }
 
     //functies
@@ -144,18 +145,18 @@ public class Weken extends AppCompatActivity {
         });
     }
     public void updateTextViews(){
-        updateInnerFun(1,week1,1);
-        updateInnerFun(2,week2,2);
-        updateInnerFun(3,week3,3);
-        updateInnerFun(4,week4,4);
-        updateInnerFun(5,week5,5);
-        updateInnerFun(6,week6,6);
-        updateInnerFun(7,week7,7);
-        updateInnerFun(8,week8,8);
-        updateInnerFun(9,week9,9);
-        updateInnerFun(10,week10,10);
-        updateInnerFun(11,week11,11);
-        updateInnerFun(12,week12,12);
+        updateInnerFun(1,week1);
+        updateInnerFun(2,week2);
+        updateInnerFun(3,week3);
+        updateInnerFun(4,week4);
+        updateInnerFun(5,week5);
+        updateInnerFun(6,week6);
+        updateInnerFun(7,week7);
+        updateInnerFun(8,week8);
+        updateInnerFun(9,week9);
+        updateInnerFun(10,week10);
+        updateInnerFun(11,week11);
+        updateInnerFun(12,week12);
     }
     public void clickInnerFun(final int i, TextView textView){
         textView.setOnClickListener(new View.OnClickListener() {
@@ -168,16 +169,20 @@ public class Weken extends AppCompatActivity {
             }
         });
     }
-    public void updateInnerFun(int i, TextView week,int weekid){
-        if (databaseVak.getWeek(id,i).equals("null")){
-            week.setText("week "+i+"");
+    public void updateInnerFun(int i, TextView week){
+        if (databaseVak.getWeek(id,i).equals("null")) {
+            week.setText("week " + i + "");
             week.setBackgroundResource(R.drawable.colorgreybuttonsweek);
-        } else if (databaseVak.getWeek(id,i).equals("false")){
-            week.setText("week "+i+" == %");
-            week.setBackgroundResource(R.drawable.colorredbuttonsweek);
-        } else if (databaseVak.getWeek(id,i).equals("True")){
-            week.setText("week "+i+" == 100%");
-            week.setBackgroundResource(R.drawable.colorgreenbuttonsweek);
+        } else if (!databaseVak.getWeek(id,i).equals("null")){
+            checkIf100Procent(i);
+            if (databaseVak.getWeek(id,i).equals("false")){
+                week.setText("week "+i+" == "+Integer.parseInt(databaseObjecten.getTotalPercentage(id
+                        ,i))/databaseObjecten.getGrote(id,i)+"%");
+                week.setBackgroundResource(R.drawable.colorredbuttonsweek);
+            } else if (databaseVak.getWeek(id,i).equals("True")){
+                week.setText(""+i+"  :p");
+                week.setBackgroundResource(R.drawable.colorgreenbuttonsweek);
+            }
         }
     }
     public void backfun(){
@@ -188,5 +193,20 @@ public class Weken extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void checkIf100Procent(int i){
+        if (Integer.parseInt(databaseObjecten.getTotalPercentage(id,i))/databaseObjecten.getGrote(id,i)!= 100){
+            databaseVak.updateFalse(i,id);
+        }   else {
+                if (Integer.parseInt(databaseObjecten.getTotalPercentage(id,i))/databaseObjecten.getGrote(id,i)== 100){
+                    databaseVak.updateTrue(i,id);
+                }
+            }
+    }
+
+    public void updateTextVak(){
+        String vak = databaseVak.getNaamLes(id);
+        vakTextview.setText(vak);
     }
 }

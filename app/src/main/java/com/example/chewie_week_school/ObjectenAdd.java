@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class ObjectenAdd extends AppCompatActivity {
     EditText editText ;
@@ -18,6 +19,8 @@ public class ObjectenAdd extends AppCompatActivity {
     Intent get;
     int id = 0;
     int week = 0;
+    TextView vakTextview;
+    TextView weekTextview;
 
 
     @Override
@@ -37,10 +40,12 @@ public class ObjectenAdd extends AppCompatActivity {
         get = getIntent();
         id = get.getIntExtra("id",-1);
         week = get.getIntExtra("week",-1);
-        System.out.println(week);
+        vakTextview = findViewById(R.id.vakObjectadd);
+        weekTextview = findViewById(R.id.weekObjectadd);
 
         backFun();
         addFun();
+        weekTextviewfun();
     }
 
     public String getEditText(){
@@ -56,6 +61,8 @@ public class ObjectenAdd extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),ObjectenLijst.class);
+                intent.putExtra("id",id);
+                intent.putExtra("week",week);
                 startActivity(intent);
             }
         });
@@ -75,5 +82,12 @@ public class ObjectenAdd extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void weekTextviewfun(){
+        String vak = databaseVak.getNaamLes(id);
+        String weektext = " week " + week;
+
+        vakTextview.setText(vak);
+        weekTextview.setText(weektext);
     }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     //atributen
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button vak5;
     Button vak6;
     int aangeklikt;
+    TextView errorbericht;
 
 
     @Override
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         vak5 = findViewById(R.id.buttonVak5);
         vak6 = findViewById(R.id.buttonVak6);
         aangeklikt = 0;
+        errorbericht = findViewById(R.id.errorMessage);
 
         //functies declaren
         databaseVak.insertZesVaken();
@@ -55,13 +58,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (aangeklikt == 1){
                     Intent intent = new Intent(getApplicationContext(), ToevoegenLes.class);
-                    intent.putExtra("id",1);
+                    intent.putExtra("id",0);
                     startActivity(intent);
                 }else {
                     if (aangeklikt == 0){
-                        Intent intent = new Intent(getApplicationContext(),Weken.class);
-                        intent.putExtra("id",1);
-                        startActivity(intent);
+                        if (databaseVak.getNaamLes(0).equals("null")){
+                            errorfun();
+                        } else {
+                            if (!databaseVak.getNaamLes(0).equals("null")){
+                                Intent intent = new Intent(getApplicationContext(),Weken.class);
+                                intent.putExtra("id",0);
+                                startActivity(intent);
+                            }
+                        }
                     }
                 }
             }
@@ -71,13 +80,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (aangeklikt == 1){
                     Intent intent = new Intent(getApplicationContext(), ToevoegenLes.class);
-                    intent.putExtra("id",2);
+                    intent.putExtra("id",1);
                     startActivity(intent);
                 }else {
                     if (aangeklikt == 0){
-                        Intent intent = new Intent(getApplicationContext(),Weken.class);
-                        intent.putExtra("id",2);
-                        startActivity(intent);
+                        if (databaseVak.getNaamLes(1).equals("null")){
+                            errorfun();
+                        } else {
+                            if (!databaseVak.getNaamLes(1).equals("null")) {
+                                Intent intent = new Intent(getApplicationContext(), Weken.class);
+                                intent.putExtra("id", 1);
+                                startActivity(intent);
+                            }
+                        }
                     }
                 }
             }
@@ -87,13 +102,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (aangeklikt == 1){
                     Intent intent = new Intent(getApplicationContext(), ToevoegenLes.class);
-                    intent.putExtra("id",3);
+                    intent.putExtra("id",2);
                     startActivity(intent);
                 }else {
                     if (aangeklikt == 0){
-                        Intent intent = new Intent(getApplicationContext(),Weken.class);
-                        intent.putExtra("id",3);
-                        startActivity(intent);
+                        if (databaseVak.getNaamLes(2).equals("null")){
+                            errorfun();
+                        } else {
+                            if (!databaseVak.getNaamLes(2).equals("null")) {
+                                Intent intent = new Intent(getApplicationContext(), Weken.class);
+                                intent.putExtra("id", 2);
+                                startActivity(intent);
+                            }
+                        }
                     }
                 }
             }
@@ -103,13 +124,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (aangeklikt == 1){
                     Intent intent = new Intent(getApplicationContext(), ToevoegenLes.class);
-                    intent.putExtra("id",4);
+                    intent.putExtra("id",3);
                     startActivity(intent);
                 }else {
                     if (aangeklikt == 0){
-                        Intent intent = new Intent(getApplicationContext(),Weken.class);
-                        intent.putExtra("id",4);
-                        startActivity(intent);
+                        if (databaseVak.getNaamLes(3).equals("null")){
+                            errorfun();
+                        } else {
+                            if (!databaseVak.getNaamLes(3).equals("null")) {
+                                Intent intent = new Intent(getApplicationContext(), Weken.class);
+                                intent.putExtra("id", 3);
+                                startActivity(intent);
+                            }
+                        }
                     }
                 }
             }
@@ -119,13 +146,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (aangeklikt == 1){
                     Intent intent = new Intent(getApplicationContext(), ToevoegenLes.class);
-                    intent.putExtra("id",5);
+                    intent.putExtra("id",4);
                     startActivity(intent);
                 }else {
                     if (aangeklikt == 0){
-                        Intent intent = new Intent(getApplicationContext(),Weken.class);
-                        intent.putExtra("id",5);
-                        startActivity(intent);
+                        if (databaseVak.getNaamLes(4).equals("null")){
+                            errorfun();
+                        } else {
+                            if (!databaseVak.getNaamLes(4).equals("null")) {
+                                Intent intent = new Intent(getApplicationContext(), Weken.class);
+                                intent.putExtra("id", 4);
+                                startActivity(intent);
+                            }
+                        }
                     }
                 }
             }
@@ -135,25 +168,31 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (aangeklikt == 1){
                     Intent intent = new Intent(getApplicationContext(), ToevoegenLes.class);
-                    intent.putExtra("id",6);
+                    intent.putExtra("id",5);
                     startActivity(intent);
                 } else {
                     if (aangeklikt == 0){
-                        Intent intent = new Intent(getApplicationContext(),Weken.class);
-                        intent.putExtra("id",6);
-                        startActivity(intent);
+                        if (databaseVak.getNaamLes(5).equals("null")){
+                            errorfun();
+                        } else {
+                            if (!databaseVak.getNaamLes(5).equals("null")) {
+                                Intent intent = new Intent(getApplicationContext(), Weken.class);
+                                intent.putExtra("id", 5);
+                                startActivity(intent);
+                            }
+                        }
                     }
                 }
             }
         });
     }
     public void updateButtons(){
-        updateInnerFun(vak1,1);
-        updateInnerFun(vak2,2);
-        updateInnerFun(vak3,3);
-        updateInnerFun(vak4,4);
-        updateInnerFun(vak5,5);
-        updateInnerFun(vak6,6);
+        updateInnerFun(vak1,0);
+        updateInnerFun(vak2,1);
+        updateInnerFun(vak3,2);
+        updateInnerFun(vak4,3);
+        updateInnerFun(vak5,4);
+        updateInnerFun(vak6,5);
     }
 
     public void updateInnerFun(Button button, int id){
@@ -163,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
         if (databaseVak.isErEenFalse(id)){
             button.setBackgroundResource(R.drawable.colorredmain);
         }
-        button.setText(databaseVak.getLetters(id-1));
+        button.setText(databaseVak.getLetters(id));
     }
 
     public void changeFun(){
@@ -179,5 +218,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void errorfun(){
+        errorbericht.setText("druk eerst op de change button en dan op de gewenste bol");
     }
 }
