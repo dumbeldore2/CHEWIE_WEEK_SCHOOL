@@ -5,92 +5,199 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/colorbackground">
+    android:background="@drawable/colorbackground"
+    android:id="@+id/ogConstraintLayoutMainActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
         android:gravity="center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="5dp">
 
-        <Button
-            android:id="@+id/buttonVak1"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:background="@drawable/colorgreymain"
-            android:text="V1" />
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/buttonVak2"
-            android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/buttonVak1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/colorgreymain"
+                android:text="V1" />
+
+            <Button
+                android:id="@+id/buttonVak2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/colorgreymain"
+                android:text="V2" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:background="@drawable/colorgreymain"
-            android:text="V2" />
-
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout1">
+            <TextView
+                android:id="@+id/vak1Text"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:text="test"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/vak2Text"
+                android:layout_width="100dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_height="wrap_content"
+                android:text="test"
+                android:gravity="center"/>
+        </LinearLayout>
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout1"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_margin="30dp">
-        <Button
-            android:id="@+id/buttonVak3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="V3"
-            android:layout_margin="30dp"
-            android:background="@drawable/colorgreymain"
-            />
-        <Button
-            android:id="@+id/buttonVak4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="V4"
-            android:layout_margin="30dp"
-            android:background="@drawable/colorgreymain"
-            />
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="5dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/buttonVak3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/colorgreymain"
+                android:text="V1" />
+
+            <Button
+                android:id="@+id/buttonVak4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/colorgreymain"
+                android:text="V2" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout1">
+            <TextView
+                android:id="@+id/vak3Text"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:text="test"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/vak4Text"
+                android:layout_width="100dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_height="wrap_content"
+                android:text="test"
+                android:gravity="center"/>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout2"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_margin="30dp">
-        <Button
-            android:id="@+id/buttonVak5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="V5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buttonVak3"
-            android:layout_margin="30dp"
-            android:background="@drawable/colorgreymain" />
-        <Button
-            android:id="@+id/buttonVak6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="V6"
-            app:layout_constraintStart_toEndOf="@id/buttonVak5"
-            app:layout_constraintTop_toBottomOf="@id/buttonVak4"
-            android:layout_margin="30dp"
-            android:background="@drawable/colorgreymain" />
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="5dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/buttonVak5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/colorgreymain"
+                android:text="V1" />
+
+            <Button
+                android:id="@+id/buttonVak6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/colorgreymain"
+                android:text="V2" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout1">
+            <TextView
+                android:id="@+id/vak5Text"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:text="test"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/vak6Text"
+                android:layout_width="100dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_height="wrap_content"
+                android:text="test"
+                android:gravity="center"/>
+        </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
@@ -98,8 +205,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout3"
         android:orientation="vertical"
-        android:gravity="center"
-        android:layout_margin="30dp">
+        android:gravity="center">
         <TextView
             android:id="@+id/errorMessage"
             android:layout_width="match_parent"
@@ -110,13 +216,9 @@
             android:textColor="@color/error"/>
         <Button
             android:id="@+id/addLesButton"
-            android:layout_width="175dp"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="75dp"
             android:text="change"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout3"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="10dp"
             android:background="@drawable/colorsystem"/>
     </LinearLayout>

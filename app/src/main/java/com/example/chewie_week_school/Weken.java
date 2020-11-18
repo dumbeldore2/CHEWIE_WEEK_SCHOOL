@@ -1,21 +1,18 @@
 package com.example.chewie_week_school;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 public class Weken extends AppCompatActivity {
     Intent get;
     int id;
+    int procent;
     DatabaseVak databaseVak;
     TextView week1;
     TextView week2;
@@ -31,7 +28,6 @@ public class Weken extends AppCompatActivity {
     TextView week12;
     TextView back;
     TextView vakTextview;
-    DatabaseObjecten databaseObjecten;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +40,7 @@ public class Weken extends AppCompatActivity {
 
         get = getIntent();
         id = get.getIntExtra("id",-1);
+        procent = get.getIntExtra("procent",0);
         databaseVak = new DatabaseVak(this);
 
         week1 = findViewById(R.id.week1);
@@ -60,13 +57,13 @@ public class Weken extends AppCompatActivity {
         week12 = findViewById(R.id.week12);
         back = findViewById(R.id.weekBack);
         vakTextview = findViewById(R.id.vakweken);
-        databaseObjecten = new DatabaseObjecten(this);
 
         //functions declareren
         updateTextViews();
         clickTextViewsFun();
         backfun();
         updateTextVak();
+        getProcentPerWeek(id);
     }
 
     //functies
@@ -165,6 +162,7 @@ public class Weken extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),ObjectenLijst.class);
                 intent.putExtra("week",i);
                 intent.putExtra("id",id);
+                intent.putExtra("procent",getProcent(i));
                 startActivity(intent);
             }
         });
@@ -176,12 +174,25 @@ public class Weken extends AppCompatActivity {
         } else if (!databaseVak.getWeek(id,i).equals("null")){
             checkIf100Procent(i);
             if (databaseVak.getWeek(id,i).equals("false")){
-                week.setText("week "+i+" == "+Integer.parseInt(databaseObjecten.getTotalPercentage(id
-                        ,i))/databaseObjecten.getGrote(id,i)+"%");
-                week.setBackgroundResource(R.drawable.colorredbuttonsweek);
+                if (getProcent(i) >= 0 && getProcent(i) <= 50){
+                    week.setText("week "+i+" == "+getProcent(i)+"%");
+                    week.setBackgroundResource(R.drawable.color1);
+                } else if (getProcent(i) > 50 && getProcent(i) <= 60){
+                    week.setText("week "+i+" == "+getProcent(i)+"%");
+                    week.setBackgroundResource(R.drawable.color2);
+                } else if (getProcent(i) > 60 && getProcent(i) <= 70){
+                    week.setText("week "+i+" == "+getProcent(i)+"%");
+                    week.setBackgroundResource(R.drawable.color3);
+                } else if (getProcent(i) > 70 && getProcent(i) <= 80){
+                    week.setText("week "+i+" == "+getProcent(i)+"%");
+                    week.setBackgroundResource(R.drawable.color4);
+                } else if (getProcent(i) > 80 && getProcent(i) <= 90){
+                    week.setText("week "+i+" == "+getProcent(i)+"%");
+                    week.setBackgroundResource(R.drawable.color5);
+                }
             } else if (databaseVak.getWeek(id,i).equals("True")){
                 week.setText(""+i+"  :p");
-                week.setBackgroundResource(R.drawable.colorgreenbuttonsweek);
+                week.setBackgroundResource(R.drawable.color6);
             }
         }
     }
@@ -196,10 +207,10 @@ public class Weken extends AppCompatActivity {
     }
 
     public void checkIf100Procent(int i){
-        if (Integer.parseInt(databaseObjecten.getTotalPercentage(id,i))/databaseObjecten.getGrote(id,i)!= 100){
+        if (getProcent(i)!= 100){
             databaseVak.updateFalse(i,id);
         }   else {
-                if (Integer.parseInt(databaseObjecten.getTotalPercentage(id,i))/databaseObjecten.getGrote(id,i)== 100){
+                if (getProcent(i)== 100){
                     databaseVak.updateTrue(i,id);
                 }
             }
@@ -208,5 +219,31 @@ public class Weken extends AppCompatActivity {
     public void updateTextVak(){
         String vak = databaseVak.getNaamLes(id);
         vakTextview.setText(vak);
+    }
+
+    public int getProcent(int i){
+        int out = 0;
+        if (!databaseVak.getTotalPercentage(id,i).equals("")){
+            out = Integer.parseInt(databaseVak.getTotalPercentage(id,i))/databaseVak.getGrote(id,i);
+        }
+        return out;
+    }
+
+    public void getProcentPerWeek(int id){
+        int uitkomst = procent;
+        ConstraintLayout og = (ConstraintLayout) findViewById(R.id.ogConstraintLayoutWeken);
+        if (uitkomst > 1 && uitkomst <= 50) {
+            og.setBackground(getResources().getDrawable(R.drawable.background1));
+        } else if (uitkomst > 50 && uitkomst <= 60){
+            og.setBackground(getResources().getDrawable(R.drawable.background2));
+        }else if (uitkomst > 60 && uitkomst <= 70){
+            og.setBackground(getResources().getDrawable(R.drawable.background3));
+        }else if (uitkomst > 70 && uitkomst <= 80){
+            og.setBackground(getResources().getDrawable(R.drawable.background4));
+        }else if (uitkomst > 80 && uitkomst <= 90){
+            og.setBackground(getResources().getDrawable(R.drawable.background5));
+        }else if (uitkomst > 90 && uitkomst <= 100){
+            og.setBackground(getResources().getDrawable(R.drawable.background6));
+        }
     }
 }

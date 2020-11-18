@@ -1,6 +1,7 @@
 package com.example.chewie_week_school;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,14 +16,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ObjectenLijst extends AppCompatActivity {
-
-    DatabaseObjecten databaseObjecten;
     DatabaseVak databaseVak;
     ListView listView;
     Button addToListview;
     Intent get;
     int id = 0;
     int week = 0;
+    int procent = 0;
     ArrayList<String>lijst;
     Button back;
     TextView vakTextview;
@@ -36,13 +36,13 @@ public class ObjectenLijst extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        databaseObjecten = new DatabaseObjecten(this);
         databaseVak = new DatabaseVak(this);
         listView = findViewById(R.id.listviewObjecten);
         addToListview = findViewById(R.id.addToListview);
         get = getIntent();
         id = get.getIntExtra("id", -1);
         week = get.getIntExtra("week", -1);
+        procent = get.getIntExtra("procent", 0);
         lijst = new ArrayList<>();
         back = findViewById(R.id.backToListview);
         vakTextview = findViewById(R.id.vakObjectLijst);
@@ -52,8 +52,9 @@ public class ObjectenLijst extends AppCompatActivity {
         buttonFun();
         lijstUpdaten();
         backButton();
-        veranderPercentage();
+        CheckIfEmpty();
         weekTextviewfun();
+        getProcentPerWeek();
 
     }
 
@@ -64,14 +65,14 @@ public class ObjectenLijst extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),ObjectenAdd.class);
                 intent.putExtra("id",id);
                 intent.putExtra("week",week);
+                intent.putExtra("procent",procent);
                 startActivity(intent);
             }
         });
     }
 
     public void lijstUpdaten(){
-        lijst = databaseObjecten.berichten(id,week);
-        System.out.println(lijst.size());
+        lijst = databaseVak.berichten(id,week);
         if (lijst.size() == 0){
             lijst.add("er is nog geen informatie");
             ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, lijst);
@@ -90,26 +91,30 @@ public class ObjectenLijst extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),Weken.class);
                 intent.putExtra("id",id);
+                intent.putExtra("procent", getProcent(week));
                 startActivity(intent);
             }
         });
     }
 
+    public int getProcent(int i){
+        return Integer.parseInt(databaseVak.getTotalPercentage(id,i))/databaseVak.getGrote(id,i);
+    }
 
     public void veranderPercentage(){
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                if (Integer.parseInt(databaseObjecten.getPercent(id, week, pos)) == 0) {
-                    databaseObjecten.updateTo50(Integer.parseInt(databaseObjecten.getPercentID(id, week, pos)), id, week);
+                if (Integer.parseInt(databaseVak.getPercent(id, week, pos)) == 0) {
+                    databaseVak.updateTo50(Integer.parseInt(databaseVak.getPercentID(id, week, pos)), id, week);
                     lijstUpdaten();
                 }   else {
-                        if (Integer.parseInt(databaseObjecten.getPercent(id, week, pos)) == 50) {
-                            databaseObjecten.updateTo100(Integer.parseInt(databaseObjecten.getPercentID(id, week, pos)), id, week);
+                        if (Integer.parseInt(databaseVak.getPercent(id, week, pos)) == 50) {
+                            databaseVak.updateTo100(Integer.parseInt(databaseVak.getPercentID(id, week, pos)), id, week);
                             lijstUpdaten();
                         }       else {
-                                    if (Integer.parseInt(databaseObjecten.getPercent(id, week, pos)) == 100) {
-                                        databaseObjecten.updateTo0(Integer.parseInt(databaseObjecten.getPercentID(id, week, pos)), id, week);
+                                    if (Integer.parseInt(databaseVak.getPercent(id, week, pos)) == 100) {
+                                        databaseVak.updateTo0(Integer.parseInt(databaseVak.getPercentID(id, week, pos)), id, week);
                                         lijstUpdaten();
                                     }
                                 }
@@ -124,5 +129,36 @@ public class ObjectenLijst extends AppCompatActivity {
 
         vakTextview.setText(vak);
         weekTextview.setText(weektext);
+    }
+
+    public String getFirst(){
+        String out = "";
+        out = lijst.get(0);
+        return out;
+    }
+
+    public void CheckIfEmpty(){
+        if (!getFirst().equals("er is nog geen informatie")){
+            veranderPercentage();
+        }
+    }
+
+
+    public void getProcentPerWeek(){
+        int uitkomst = procent;
+        ConstraintLayout og = (ConstraintLayout) findViewById(R.id.ogConstraintLayoutObjectenLijst);
+        if (uitkomst > 1 && uitkomst <= 50) {
+            og.setBackground(getResources().getDrawable(R.drawable.background1));
+        } else if (uitkomst > 50 && uitkomst <= 60){
+            og.setBackground(getResources().getDrawable(R.drawable.background2));
+        }else if (uitkomst > 60 && uitkomst <= 70){
+            og.setBackground(getResources().getDrawable(R.drawable.background3));
+        }else if (uitkomst > 70 && uitkomst <= 80){
+            og.setBackground(getResources().getDrawable(R.drawable.background4));
+        }else if (uitkomst > 80 && uitkomst <= 90){
+            og.setBackground(getResources().getDrawable(R.drawable.background5));
+        }else if (uitkomst > 90 && uitkomst <= 100){
+            og.setBackground(getResources().getDrawable(R.drawable.background6));
+        }
     }
 }

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ToevoegenLes"
-    android:background="@drawable/colorbackground">
+    android:background="@drawable/colorbackground"
+    android:id="@+id/ogConstraintLayoutVoegToeLes">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,13 +29,20 @@
             android:layout_margin="60dp"
             android:inputType="numberDecimal" />
         <TextView
+            android:id="@+id/errorMessageAddLes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:gravity="center"
+            android:textColor="@color/error"/>
+        <TextView
             android:id="@+id/addDeShit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="change"
             android:textSize="50dp"
             android:layout_marginLeft="70dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="70dp"
             android:gravity="center"
             android:background="@drawable/colorsystem"/>
