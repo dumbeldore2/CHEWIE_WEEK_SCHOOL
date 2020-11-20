@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     //atributen
     Button addLes;
+    Button add;
     DatabaseVak databaseVak;
     Button vak1;
     Button vak2;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         vak4textview = findViewById(R.id.vak4Text);
         vak5textview = findViewById(R.id.vak5Text);
         vak6textview = findViewById(R.id.vak6Text);
+        add = findViewById(R.id.reclameBut);
         weken = new ArrayList<>();
 
         //functies declaren
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         changeFun();
         changeTextview();
         backgroundFun();
+        addFun();
 
         //testArea
         ArrayList<String>nummers = new ArrayList<>();
@@ -352,5 +355,16 @@ public class MainActivity extends AppCompatActivity {
             aantal =1;
         }
         return nummer/aantal;
+    }
+
+    public void addFun(){
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),Add.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

@@ -221,6 +221,13 @@
             android:text="change"
             android:layout_margin="10dp"
             android:background="@drawable/colorsystem"/>
+        <Button
+            android:id="@+id/reclameBut"
+            android:layout_width="300dp"
+            android:layout_height="75dp"
+            android:text="add"
+            android:layout_margin="10dp"
+            android:background="@drawable/colorsystem"/>
     </LinearLayout>
 
 
